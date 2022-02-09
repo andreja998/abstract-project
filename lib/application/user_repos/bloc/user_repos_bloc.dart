@@ -25,16 +25,13 @@ class UserReposBloc extends Bloc<UserReposEvent, UserReposState> {
     yield* event.map(
       getRepos: (e) async* {
         final repos = await userRepos.getRepositories();
-        
-        
+        // handling errors here, only one error here to have as an example
         yield repos.fold((failure) {
           return const UserReposState.error(failure: ReposFailure.serverError());
         }, (value) {
-          // return UserReposState.loaded(repos: value);
-          return UserReposState.error(failure: ReposFailure.serverError());
+          return UserReposState.loaded(repos: value);
         });
         
       });
-    // TODO: implement mapEventToState
   }
 }

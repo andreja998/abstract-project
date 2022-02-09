@@ -19,11 +19,12 @@ class _UserDetailsState extends State<UserDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text('Tech interview git'), centerTitle: true,),
       body: BlocBuilder<UserDetailsBloc, UserDetailsState>(
           builder: (context, userDetailsState) {
         return userDetailsState.when(loaded: (user) {
           return Container(
+            padding: EdgeInsets.all(16),
             width: MediaQuery.of(context).size.width,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,9 +62,12 @@ class _UserDetailsState extends State<UserDetails> {
                         child: AspectRatio(
                             aspectRatio: 4 / 3,
                             child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: ThemeData().primaryColor
+                              ),
                               alignment: Alignment.center,
-                              color: Colors.white70,
-                              child: Text('Repositories', style: TextStyle(fontSize: 20,),),
+                              child: Text('Repositories', style: TextStyle(fontSize: 20, color: Colors.white),),
                             )),
                       ),
                     ),

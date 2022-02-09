@@ -21,7 +21,10 @@ class _UserReposState extends State<UserRepos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('Repositories'),
+        centerTitle: true,
+      ),
       body: BlocBuilder<UserReposBloc, UserReposState>(
         builder: (context, reposState) {
           return reposState.when(
@@ -32,7 +35,7 @@ class _UserReposState extends State<UserRepos> {
                 itemBuilder: (BuildContext context, int index) {
                   return InkWell(
                     onTap: () {
-                      AutoRouter.of(context).push(router.UserRepoCommitsRoute(repoName: repos[index].name!));
+                      AutoRouter.of(context).navigate(router.UserRepoCommitsRoute(repoName: repos[index].name!));
                     },
                                       child: Padding(
                       padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
